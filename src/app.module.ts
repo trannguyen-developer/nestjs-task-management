@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 
+const isProduction = process.env.STAGE === 'prod';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -11,6 +12,8 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TasksModule,
     TypeOrmModule.forRoot({
+      ssl: isProduction,
+      extra: { ssl: isProduction ? { rejectUnauthorized: false } : null },
       type: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
