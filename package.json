@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "STAGE=dev nest build",
+    "build": "STAGE=prod nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "STAGE=dev nest start",
     "start:dev": "STAGE=dev nest start --watch",
